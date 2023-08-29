@@ -1,5 +1,6 @@
 // pages/api/spotify-callback.js
 import axios from "axios";
+import { setToken } from "../../src/utilities/tokenStorage";
 
 export default async (req, res) => {
   const code = req.query.code || null;
@@ -25,6 +26,7 @@ export default async (req, res) => {
   try {
     const response = await axios(authOptions);
     const accessToken = response.data.access_token;
+    setToken(accessToken);
     // Save the access token - either in a cookie, or in your database
     res.redirect(`/dashboard?access_token=${accessToken}`);
   } catch (error) {
