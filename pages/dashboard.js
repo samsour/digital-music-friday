@@ -1,10 +1,40 @@
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
+import React, { useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
 
-export default function Home() {
+export default function Dashboard() {
+  const [profile, setProfile] = useState(null);
+  const router = useRouter();
+
+  async function fetchSpotifyProfile(accessToken) {
+    const response = await fetch("https://api.spotify.com/v1/me", {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    return response.json();
+  }
+
+  useEffect(() => {
+    if (router.query["access_token"]) {
+      const accessToken = router.query["access_token"];
+
+      // Fetch user profile data
+      fetchSpotifyProfile(accessToken).then((profile) => {
+        console.log(profile);
+        setProfile(profile);
+      });
+    }
+  }, [router.query["access_token"]]);
+
+  if (!profile) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -13,16 +43,13 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>Welcome to Digital Music Friday!</h1>
-        <p className={styles.description}>
-          The digital version of your favorite game.
-        </p>
+        <h1>Welcome, {profile.display_name}</h1>
 
         <Image
-          src="/images/example.jpg"
-          height={144}
-          width={144}
-          alt="Your Name"
+          src={profile.images[0].url}
+          alt={`${profile.display_name}'s profile picture`}
+          width={64}
+          height={64}
         />
 
         <div className={styles.grid}>
@@ -42,6 +69,16 @@ export default function Home() {
             <h3>Contact &rarr;</h3>
             <p>Have questions or feedback? We'd love to hear from you.</p>
           </Link>
+        </div>
+
+        <div style={{ position: "relative", width: "100%", height: "300px" }}>
+          <Image
+            src="/images/example.jpg"
+            layout="fill"
+            objectFit="cover"
+            objectPosition="center"
+            alt="Your Name"
+          />
         </div>
       </main>
 
