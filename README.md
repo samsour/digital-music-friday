@@ -9,6 +9,11 @@ This repository is a Next.js project that includes an example of Spotify OAuth i
   - [Installation](#installation)
   - [Getting Started](#getting-started)
   - [Environment Variables](#environment-variables)
+  - [Step-by-step Guide to Setup Spotify API Credentials](#step-by-step-guide-to-setup-spotify-api-credentials)
+    - [Step 1: Register Your App with Spotify](#step-1-register-your-app-with-spotify)
+    - [Step 2: Copy the Client ID and Client Secret](#step-2-copy-the-client-id-and-client-secret)
+    - [Step 3: Create `.env.local` file](#step-3-create-envlocal-file)
+    - [Step 4: Add Environment Variables](#step-4-add-environment-variables)
   - [Project Structure](#project-structure)
   - [API Routes](#api-routes)
   - [Contributing](#contributing)
@@ -54,6 +59,32 @@ SPOTIFY_CLIENT_ID=yourClientIDHere
 SPOTIFY_CLIENT_SECRET=yourClientSecretHere
 SPOTIFY_REDIRECT_URI=http://localhost:3000/api/spotify-callback
 ```
+
+This project utilizes Spotify's API to create a musical experience. In order to get started, you'll need to register your app with Spotify to get the API Client ID and Secret.
+
+## Step-by-step Guide to Setup Spotify API Credentials
+
+### Step 1: Register Your App with Spotify
+
+1. Visit the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard/applications).
+2. Log in to your Spotify account, or create a new one if you don't have one.
+3. Click on the 'Create an App' button.
+4. Fill in the name and description for your app, then click 'Create'.
+5. After your app is created, you will be redirected to a dashboard where you can see your Client ID and Client Secret.
+
+### Step 2: Copy the Client ID and Client Secret
+
+1. In the Spotify Developer Dashboard, locate the Client ID and Client Secret.
+2. Copy these credentials for the next step.
+
+### Step 3: Create `.env.local` file
+
+1. In your project root, create a new file named `.env.local`.
+2. Open this file in a text editor.
+
+### Step 4: Add Environment Variables
+
+In your `.env.local` file, add the following lines, replacing `yourClientIDHere` and `yourClientSecretHere` with the credentials you copied earlier.
 
 Important: Never commit .env.local to version control. It is in the .gitignore for security.
 
