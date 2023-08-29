@@ -21,7 +21,9 @@ export default function Home() {
         </p>
 
         <div className={styles.grid}>
-          <button onClick={handleLogin}>Login with Spotify</button>
+          <button onClick={handleLogin} className={styles.card}>
+            <h3>Login with Spotify</h3>
+          </button>
         </div>
       </main>
 
