@@ -26,7 +26,7 @@ export default async (req, res) => {
     const response = await axios(authOptions);
     const accessToken = response.data.access_token;
     // Save the access token - either in a cookie, or in your database
-    res.redirect(`/your-frontend-route?access_token=${accessToken}`);
+    res.redirect(`/dashboard?access_token=${accessToken}`);
   } catch (error) {
     res.redirect(`/error?message=${error}`);
   }

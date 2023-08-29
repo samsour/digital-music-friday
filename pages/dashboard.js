@@ -22,7 +22,22 @@ export default function Home() {
         </p>
 
         <div className={styles.grid}>
-          <button onClick={handleLogin}>Login with Spotify</button>
+          <Link href="/play" className={styles.card}>
+            <h3>Play Now &rarr;</h3>
+            <p>Click here to start playing Hitster Digital!</p>
+          </Link>
+          <Link href="/rules" className={styles.card}>
+            <h3>Rules &rarr;</h3>
+            <p>Not sure how to play? Click here to read the rules.</p>
+          </Link>
+          <Link href="/leaderboard" className={styles.card}>
+            <h3>Leaderboard &rarr;</h3>
+            <p>Check out the top scores from players around the world.</p>
+          </Link>
+          <Link href="/contact" className={styles.card}>
+            <h3>Contact &rarr;</h3>
+            <p>Have questions or feedback? We'd love to hear from you.</p>
+          </Link>
         </div>
       </main>
 
