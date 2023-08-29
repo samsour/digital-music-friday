@@ -1,25 +1,29 @@
 import Head from "next/head";
 import Link from "next/link";
+import Image from "next/image";
 
 import styles from "../styles/Home.module.css";
-
-const handleLogin = () => {
-  window.location.href = "/api/spotify-login";
-};
 
 export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Create Next App</title>
+        <title>Dashboard – Digital Music Friday</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>Welcome to Hitster Digital!</h1>
+        <h1 className={styles.title}>Welcome to Digital Music Friday!</h1>
         <p className={styles.description}>
           The digital version of your favorite game.
         </p>
+
+        <Image
+          src="/images/example.jpg"
+          height={144}
+          width={144}
+          alt="Your Name"
+        />
 
         <div className={styles.grid}>
           <Link href="/play" className={styles.card}>
