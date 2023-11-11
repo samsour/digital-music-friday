@@ -1,9 +1,15 @@
 // pages/play.js
 import { useState, useEffect } from "react";
+import SpotifyPlayer from "react-spotify-web-playback";
 
 const SongPlayer = () => {
-  // Simulated component
-  return <div>Here will be the Song Player</div>;
+  // const { token, profile } = useSpotifyAccountStore(); TODO
+  return (
+    <SpotifyPlayer
+      // token="TBD" // TODO: Store token in store and access it in SpotifyPlayer
+      uris={["spotify:album:1Byg1v4uPz1XAJl3oSlsu3"]}
+    />
+  );
 };
 
 const Timeline = () => {

@@ -1,6 +1,7 @@
 // pages/api/spotify-login.js
 export default (req, res) => {
-  const scopes = "user-read-private user-read-email"; // Add scopes as needed
+  const scopes =
+    "streaming user-read-playback-state user-modify-playback-state user-read-private user-read-email"; // Add scopes as needed
   res.redirect(
     `https://accounts.spotify.com/authorize?response_type=code&client_id=${
       process.env.SPOTIFY_CLIENT_ID

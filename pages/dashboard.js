@@ -44,6 +44,7 @@ export default function Dashboard() {
 
       <main className={styles.main}>
         <h1>Welcome, {profile.display_name}</h1>
+        <h6>{router.query["access_token"]}</h6>
 
         <Image
           src={profile.images[0].url}
