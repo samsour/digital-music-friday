@@ -1,12 +1,14 @@
 // pages/play.js
 import { useState, useEffect } from "react";
 import SpotifyPlayer from "react-spotify-web-playback";
+import {useSpotifyStore} from "../src/stores/useSpotifyStore";
 
 const SongPlayer = () => {
-  // const { token, profile } = useSpotifyAccountStore(); TODO
+  const { accessToken } = useSpotifyStore();
+
   return (
     <SpotifyPlayer
-      // token="TBD" // TODO: Store token in store and access it in SpotifyPlayer
+      token={accessToken}
       uris={["spotify:album:1Byg1v4uPz1XAJl3oSlsu3"]}
     />
   );
@@ -50,7 +52,7 @@ const Play = () => {
       <header>Hitster Game</header>
       <main>
         <SongPlayer />
-        <Timeline />
+        {/* <Timeline /> */}
         <QuizOptions />
         <button onClick={() => handleAnswer(true)}>
           This is a Correct Answer

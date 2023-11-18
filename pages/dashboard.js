@@ -3,35 +3,44 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styles from "../styles/Home.module.css";
+import { useSpotifyStore } from "../src/stores/useSpotifyStore";
+import useStore from "../src/stores/useStore";
 
 export default function Dashboard() {
-  const [profile, setProfile] = useState(null);
   const router = useRouter();
-
-  async function fetchSpotifyProfile(accessToken) {
-    const response = await fetch("https://api.spotify.com/v1/me", {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
-    return response.json();
-  }
+  const { setUser, setAccessToken } = useSpotifyStore()
+  const user = useStore(useSpotifyStore, (state) => state.user)
+  const accessToken = useStore(useSpotifyStore, (state) => state.accessToken)
 
   useEffect(() => {
     if (router.query["access_token"]) {
-      const accessToken = router.query["access_token"];
+      const token = router.query["access_token"];
+      setAccessToken(token);
 
       // Fetch user profile data
-      fetchSpotifyProfile(accessToken).then((profile) => {
-        console.log(profile);
-        setProfile(profile);
+      fetch("https://api.spotify.com/v1/me", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then(response => response.json())
+      .then(profile => {
+        setUser(profile);
+      })
+      .finally(() => {
+        // Clear token out of URL after saving
+        const { access_token, ...queryWithoutToken } = router.query;
+        router.replace({
+          pathname: router.pathname,
+          query: queryWithoutToken,
+        });
       });
     }
   }, [router.query["access_token"]]);
 
-  if (!profile) {
+  if (!user) {
     return <div>Loading...</div>;
   }
 
@@ -43,15 +52,16 @@ export default function Dashboard() {
       </Head>
 
       <main className={styles.main}>
-        <h1>Welcome, {profile.display_name}</h1>
-        <h6>{router.query["access_token"]}</h6>
+        <h1>Welcome, {user.display_name}</h1>
 
-        <Image
-          src={profile.images[0].url}
-          alt={`${profile.display_name}'s profile picture`}
-          width={64}
-          height={64}
-        />
+        {user.images && (
+          <Image
+            src={user.images[0].url}
+            alt={`${user.display_name}'s profile picture`}
+            width={64}
+            height={64}
+          />
+        )}
 
         <div className={styles.grid}>
           <Link href="/play" className={styles.card}>
