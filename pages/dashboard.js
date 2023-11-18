@@ -54,7 +54,7 @@ export default function Dashboard() {
       <main className={styles.main}>
         <h1>Welcome, {user.display_name}</h1>
 
-        {user.images && (
+        {user.images[0] && (
           <Image
             src={user.images[0].url}
             alt={`${user.display_name}'s profile picture`}
