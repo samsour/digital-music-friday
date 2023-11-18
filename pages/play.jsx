@@ -9,6 +9,7 @@ const SongPlayer = () => {
   return (
     <SpotifyPlayer
       token={accessToken}
+      name="Digital Music Friday"
       uris={["spotify:album:1Byg1v4uPz1XAJl3oSlsu3"]}
     />
   );
@@ -49,7 +50,6 @@ const Play = () => {
 
   return (
     <div>
-      <header>Hitster Game</header>
       <main>
         <SongPlayer />
         {/* <Timeline /> */}
