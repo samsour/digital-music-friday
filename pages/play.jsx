@@ -53,7 +53,6 @@ const Play = () => {
       <main>
         <SongPlayer />
         {/* <Timeline /> */}
-        <QuizOptions />
         <button onClick={() => handleAnswer(true)}>
           This is a Correct Answer
         </button>
