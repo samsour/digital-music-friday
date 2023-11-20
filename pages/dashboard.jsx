@@ -52,7 +52,7 @@ export default function Dashboard() {
       </Head>
 
       <main className={styles.main}>
-        <h1>Welcome, {user.display_name}</h1>
+        <h1 style={{ animation: "tilt 2s infinite linear" }}>Welcome, {user.display_name}</h1>
 
         {user.images[0] && (
           <Image
@@ -137,6 +137,14 @@ export default function Dashboard() {
           font-size: 1.1rem;
           font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
             DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+        }
+        @keyframes tilt {
+          0%, 100% {
+            transform: rotate(-5deg);
+          }
+          50% {
+            transform: rotate(5deg);
+          }
         }
       `}</style>
 
