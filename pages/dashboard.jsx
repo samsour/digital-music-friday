@@ -1,44 +1,44 @@
-import Head from "next/head";
-import Link from "next/link";
-import Image from "next/image";
-import { useRouter } from "next/router";
+import Head from 'next/head';
+import Link from 'next/link';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
 
-import React, { useEffect } from "react";
-import styles from "../styles/Home.module.css";
-import { useSpotifyStore } from "../src/stores/useSpotifyStore";
-import useStore from "../src/stores/useStore";
+import React, { useEffect } from 'react';
+import styles from '../styles/Home.module.css';
+import { useSpotifyStore } from '../src/stores/useSpotifyStore';
+import useStore from '../src/stores/useStore';
 
 export default function Dashboard() {
   const router = useRouter();
-  const { setUser, setAccessToken } = useSpotifyStore()
-  const user = useStore(useSpotifyStore, (state) => state.user)
-  const accessToken = useStore(useSpotifyStore, (state) => state.accessToken)
+  const { setUser, setAccessToken } = useSpotifyStore();
+  const user = useStore(useSpotifyStore, (state) => state.user);
+  const accessToken = useStore(useSpotifyStore, (state) => state.accessToken);
 
   useEffect(() => {
-    if (router.query["access_token"]) {
-      const token = router.query["access_token"];
+    if (router.query['access_token']) {
+      const token = router.query['access_token'];
       setAccessToken(token);
 
       // Fetch user profile data
-      fetch("https://api.spotify.com/v1/me", {
+      fetch('https://api.spotify.com/v1/me', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then(response => response.json())
-      .then(profile => {
-        setUser(profile);
-      })
-      .finally(() => {
-        // Clear token out of URL after saving
-        const { access_token, ...queryWithoutToken } = router.query;
-        router.replace({
-          pathname: router.pathname,
-          query: queryWithoutToken,
+        .then((response) => response.json())
+        .then((profile) => {
+          setUser(profile);
+        })
+        .finally(() => {
+          // Clear token out of URL after saving
+          const { access_token, ...queryWithoutToken } = router.query;
+          router.replace({
+            pathname: router.pathname,
+            query: queryWithoutToken,
+          });
         });
-      });
     }
-  }, [router.query["access_token"]]);
+  }, [router.query['access_token']]);
 
   if (!user) {
     return <div>Loading...</div>;
@@ -82,7 +82,7 @@ export default function Dashboard() {
           </Link>
         </div>
 
-        <div style={{ position: "relative", width: "100%", height: "300px" }}>
+        <div style={{ position: 'relative', width: '100%', height: '300px' }}>
           <Image
             src="/images/example.jpg"
             layout="fill"

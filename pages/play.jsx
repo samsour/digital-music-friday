@@ -1,29 +1,6 @@
-// pages/play.js
-import { useState, useEffect } from "react";
-import SpotifyPlayer from "react-spotify-web-playback";
-import {useSpotifyStore} from "../src/stores/useSpotifyStore";
-
-const SongPlayer = () => {
-  const { accessToken } = useSpotifyStore();
-
-  return (
-    <SpotifyPlayer
-      token={accessToken}
-      name="Digital Music Friday"
-      uris={["spotify:album:1Byg1v4uPz1XAJl3oSlsu3"]}
-    />
-  );
-};
-
-const Timeline = () => {
-  // Simulated component
-  return <div>Here will be the Timeline</div>;
-};
-
-const QuizOptions = () => {
-  // Simulated component
-  return <div>Here will be the Quiz Options</div>;
-};
+import { useState, useEffect } from 'react';
+import SongPlayer from '../src/components/SongPlayer';
+import Timeline from '../src/components/Timeline';
 
 const Play = () => {
   const [currentSong, setCurrentSong] = useState(null);
@@ -34,7 +11,7 @@ const Play = () => {
     // Simulating fetching a song when the component mounts
     const fetchSong = async () => {
       // Call Spotify API or some other source here
-      const fetchedSong = "Some fetched song";
+      const fetchedSong = 'Some fetched song';
       setCurrentSong(fetchedSong);
     };
 
@@ -52,8 +29,7 @@ const Play = () => {
     <div>
       <main>
         <SongPlayer />
-        {/* <Timeline /> */}
-        <QuizOptions />
+        <Timeline />
         <button onClick={() => handleAnswer(true)}>
           This is a Correct Answer
         </button>

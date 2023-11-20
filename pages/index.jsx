@@ -1,9 +1,9 @@
-import Head from "next/head";
+import Head from 'next/head';
 
-import styles from "../styles/Home.module.css";
+import styles from '../styles/Home.module.css';
 
 const handleLogin = () => {
-  window.location.href = "/api/spotify-login";
+  window.location.href = '/api/spotify-login';
 };
 
 export default function Home() {
