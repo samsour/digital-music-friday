@@ -52,7 +52,9 @@ export default function Dashboard() {
       </Head>
 
       <main className={styles.main}>
-        <h1 style={{ animation: "tilt 2s infinite linear" }}>Welcome, {user.display_name}</h1>
+        <h1 style={{ animation: 'tilt 2s infinite linear' }}>
+          Welcome, {user.display_name}
+        </h1>
 
         {user.images[0] && (
           <Image
@@ -64,21 +66,17 @@ export default function Dashboard() {
         )}
 
         <div className={styles.grid}>
-          <Link href="/play" className={styles.card}>
-            <h3>Play Now &rarr;</h3>
-            <p>Click here to start playing Hitster Digital!</p>
+          <Link href="/new-game" className={styles.card}>
+            <h3>New Game</h3>
+            <p>Click here to create a new online or offline game.</p>
+          </Link>
+          <Link href="/search" className={styles.card}>
+            <h3>Search for a game</h3>
+            <p>Click here to join an online match.</p>
           </Link>
           <Link href="/rules" className={styles.card}>
-            <h3>Rules &rarr;</h3>
-            <p>Not sure how to play? Click here to read the rules.</p>
-          </Link>
-          <Link href="/leaderboard" className={styles.card}>
-            <h3>Leaderboard &rarr;</h3>
-            <p>Check out the top scores from players around the world.</p>
-          </Link>
-          <Link href="/contact" className={styles.card}>
-            <h3>Contact &rarr;</h3>
-            <p>Have questions or feedback? We'd love to hear from you.</p>
+            <h3>Rules</h3>
+            <p>Click here to start playing Hitster Digital.</p>
           </Link>
         </div>
 
@@ -139,7 +137,8 @@ export default function Dashboard() {
             DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
         }
         @keyframes tilt {
-          0%, 100% {
+          0%,
+          100% {
             transform: rotate(-5deg);
           }
           50% {

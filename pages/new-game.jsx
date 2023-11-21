@@ -1,27 +1,37 @@
-import { useState, useEffect } from 'react';
+import styles from '../styles/Home.module.css';
+import Head from 'next/head';
+import Link from 'next/link';
 
 const NewGame = () => {
-  useEffect(() => {
-    // Simulating fetching a song when the component mounts
-    const fetchSong = async () => {
-      // Call Spotify API or some other source here
-      const fetchedSong = 'Some fetched song';
-      setCurrentSong(fetchedSong);
-    };
-
-    fetchSong();
-  }, []);
-
-  const handleAnswer = (answer) => {
-    // Implement your quiz logic here
-    if (answer) {
-      setScore(score + 1);
-    }
-  };
-
   return (
-    <div>
-      <main>Stuff</main>
+    <div className={styles.container}>
+      <Head>
+        <title>Dashboard – Digital Music Friday</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <main className={styles.main}>
+        <div className={styles.grid}>
+          <Link href="/new-game" className={styles.card}>
+            <h3>Online</h3>
+            <p>Invite people by sharing the room link..</p>
+          </Link>
+          <Link href="/search" className={styles.card}>
+            <h3>Local (Offline)</h3>
+            <p>Play on one device in your livingroom..</p>
+          </Link>
+        </div>
+      </main>
+
+      <footer>
+        <a
+          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Powered by Pinching
+        </a>
+      </footer>
     </div>
   );
 };
